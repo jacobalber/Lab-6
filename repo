@@ -14,21 +14,26 @@ def encode(code_string):
             return ""
     return answer
 
+#Changed his decode function he previosuly made by spacing things out, giving different variable names 
 def decode(encoded_string):
-    answer = ""
+    #The answer in this case would be the oringal code, so named it orig_string
+    orig_string= ""
+
     for num in encoded_string:
-        if num.isdigit():
-            val = int(num)
-            for i in range(3):
+
+            val= int(num)
+            #Changed it to range (0,3) so it is better to understand
+            for j in range (0,3):
+
                 if val == 0:
-                    val = 9
+                    val= 9
                 else:
-                    val -= 1
-            answer += str(val)
-        else:
-            print("Invalid input: Encoded string should contain only digits.")
-            return ""
-    return answer
+                    val-= 1
+
+            orig_string+= str(val)
+        #Removed this print as this code would never run and if num as this code would enever run with other condtions
+    
+    return orig_string
 
 if __name__ == '__main__':
     encoded_val = ""
