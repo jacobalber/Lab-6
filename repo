@@ -1,0 +1,62 @@
+def encode(code_string):
+    answer = ""
+    for num in code_string:
+        if num.isdigit():
+            val = int(num)
+            for i in range(3):
+                if val == 9:
+                    val = 0
+                else:
+                    val += 1
+            answer += str(val)
+        else:
+            print("Invalid input: Password should contain only digits.")
+            return ""
+    return answer
+
+def decode(encoded_string):
+    answer = ""
+    for num in encoded_string:
+        if num.isdigit():
+            val = int(num)
+            for i in range(3):
+                if val == 0:
+                    val = 9
+                else:
+                    val -= 1
+            answer += str(val)
+        else:
+            print("Invalid input: Encoded string should contain only digits.")
+            return ""
+    return answer
+
+if __name__ == '__main__':
+    encoded_val = ""
+    while True:
+        print("Menu \n------------- \n1. Encode \n2. Decode \n3. Quit \n")
+        option = input("Please enter an option: ")
+
+        if option.isdigit():
+            option = int(option)
+            if option == 1:
+                password = input("Please enter your password to encode: ")
+                encoded_val = encode(password)
+                if encoded_val:
+                    print("Your password has been encoded and stored! \n")
+                else:
+                    print("Failed to encode password. \n")
+            elif option == 2:
+                if encoded_val:
+                    decoded_val = decode(encoded_val)
+                    if decoded_val:
+                        print(f"The encoded password is {encoded_val}, and the original password is {decoded_val}. \n")
+                    else:
+                        print("Failed to decode password. \n")
+                else:
+                    print("No encoded password available. Please encode a password first. \n")
+            elif option == 3:
+                break
+            else:
+                print("Invalid option. Please enter a number between 1 and 3. \n")
+        else:
+            print("Invalid input. Please enter a number. \n")
