@@ -1,18 +1,35 @@
-def encode(code_string):
-    answer = ""
-    for num in code_string:
-        if num.isdigit():
-            val = int(num)
-            for i in range(3):
-                if val == 9:
-                    val = 0
-                else:
-                    val += 1
-            answer += str(val)
-        else:
-            print("Invalid input: Password should contain only digits.")
+def password_encoder(password):
+    # Initialize an empty string to store the encoded password.
+    encoded_password = ""
+
+    # First, we need to check if the password is of length 8.
+    if len(password) != 8:
+        print("Invalid password length. Password should be 8 digits long.")
+        return ""
+
+    # Loop through each character in the password.
+    for char in password:
+        # Check if the current character is a digit.
+        if not char.isdigit():
+            print("Invalid password. Only digits are allowed.")
             return ""
-    return answer
+        
+        # Convert the current character to an integer.
+        num = int(char)
+
+        # Add 3 to the number.
+        num += 3
+
+        # If the result is more than 9, we need to wrap it around.
+        if num > 9:
+            num = num - 10
+
+        # Add the encoded number to the encoded_password string.
+        encoded_password += str(num)
+
+    # Return the encoded password.
+    return encoded_password
+
 
 #Changed his decode function he previosuly made by spacing things out, giving different variable names 
 def decode(encoded_string):
